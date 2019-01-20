@@ -1,18 +1,18 @@
 {
-  "name": "type-search",
+  "name": "indexed-substring-search",
   "version": "1.0.0",
   "description": "",
   "keywords": [
-    "lookup",
+    "search",
+    "substring",
     "suffix-tree"
   ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "dependencies": {
-    "@types/node": "^10.12.18"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^23.3.12",
+    "@types/node": "^10.12.18",
     "jest": "^23.6.0",
     "prettier": "^1.15.3",
     "ts-jest": "^23.10.5",
