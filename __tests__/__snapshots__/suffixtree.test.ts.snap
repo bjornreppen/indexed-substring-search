@@ -1,16 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Banana 1`] = `
-Builder {
+SuffixTree {
   "index": Object {
     "a": Object {
-      "$": 4,
+      "$": Object {
+        "BANANA": 1,
+      },
       "n": Object {
         "a": Object {
-          "$": 4,
+          "$": Object {
+            "BANANA": 1,
+          },
           "n": Object {
             "a": Object {
-              "$": 4,
+              "$": Object {
+                "BANANA": 1,
+              },
             },
           },
         },
@@ -22,7 +28,9 @@ Builder {
           "a": Object {
             "n": Object {
               "a": Object {
-                "$": 4,
+                "$": Object {
+                  "BANANA": 1,
+                },
               },
             },
           },
@@ -31,10 +39,14 @@ Builder {
     },
     "n": Object {
       "a": Object {
-        "$": 4,
+        "$": Object {
+          "BANANA": 1,
+        },
         "n": Object {
           "a": Object {
-            "$": 4,
+            "$": Object {
+              "BANANA": 1,
+            },
           },
         },
       },
@@ -44,13 +56,19 @@ Builder {
 `;
 
 exports[`Banana ban search 'nana ban' 1`] = `
-Array [
-  "BANANA",
-]
+Object {
+  "BANANA": 1,
+}
 `;
 
 exports[`Banana search nana 1`] = `
 Object {
-  "BANANA": Object {},
+  "BANANA": 1,
+}
+`;
+
+exports[`Multiple hits sharing phrases 1`] = `
+Object {
+  "BANANA": 1,
 }
 `;
