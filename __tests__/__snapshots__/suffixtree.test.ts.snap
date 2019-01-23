@@ -56,9 +56,12 @@ SuffixTree {
 `;
 
 exports[`Banana ban search 'nana ban' 1`] = `
-Object {
-  "BANANA": 1,
-}
+Array [
+  Object {
+    "key": "BANANA",
+    "score": 1,
+  },
+]
 `;
 
 exports[`Banana search nana 1`] = `
@@ -68,7 +71,23 @@ Object {
 `;
 
 exports[`Multiple hits sharing phrases 1`] = `
-Object {
-  "BANANA": 1,
-}
+Array [
+  Object {
+    "key": "wood",
+    "score": 1,
+  },
+]
+`;
+
+exports[`i myra eller skogen 1`] = `
+Array [
+  Object {
+    "key": "myr",
+    "score": 1,
+  },
+  Object {
+    "key": "skog",
+    "score": 0.81,
+  },
+]
 `;

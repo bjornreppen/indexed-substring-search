@@ -17,7 +17,7 @@ export class SuffixIndex {
     });
     // For our intersect, sort the shortest result set first
     wordMatches.sort((a: any, b: any) => a.length - b.length);
-    const result: any = {};
+    const result: any = [];
     const [first, ...rest] = wordMatches;
     Object.keys(first).forEach((key: string) => {
       let score = first[key];
@@ -27,8 +27,9 @@ export class SuffixIndex {
         }
         score *= rx[key];
       }
-      result[key] = score;
+      result.push({ key: key, score: score });
     });
+    result.sort((a: any, b: any) => b.score - a.score);
     return result;
   }
 

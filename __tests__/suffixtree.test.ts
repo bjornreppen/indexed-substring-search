@@ -31,11 +31,22 @@ test("Multiple hits sharing phrases", () => {
   expect(actual).toMatchSnapshot();
 });
 
+test("i myra eller skogen", () => {
+  const actual = query(
+    [
+      { phrase: "in the woods", key: "myr", score: 1 },
+      { phrase: "in the forest", key: "skog", score: 0.9 }
+    ],
+    "the in"
+  );
+  expect(actual).toMatchSnapshot();
+});
+
 const query = (indexInput: any[], query: string) => {
   const tree = new SuffixTree();
-  indexInput.forEach(sentence =>
-    tree.addSentence("banana ban", { key: "BANANA", score: 1 })
+  indexInput.forEach(e =>
+    tree.addSentence(e.phrase, { key: e.key, score: e.score })
   );
   const index = tree.buildIndex();
-  return index.queryPhrase("nana ban");
+  return index.queryPhrase(query);
 };
