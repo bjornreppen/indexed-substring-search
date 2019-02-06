@@ -27,7 +27,7 @@ export class SuffixIndex {
         }
         score *= rx[key];
       }
-      result.push({ key: key, score: score });
+      result.push({ key, score });
     });
     result.sort((a: any, b: any) => b.score - a.score);
     return result;
