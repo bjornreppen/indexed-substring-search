@@ -42,6 +42,16 @@ test("i myra eller skogen", () => {
   expect(actual).toMatchSnapshot();
 });
 
+test("erosjonsmotstand", () => {
+  const tree = new SuffixTree();
+  tree.addSentence("Erosjonsmotstand (i sorterte sedimenter)", {
+    key: "ER",
+    score: 1
+  });
+  const index = tree.buildIndex();
+  expect(index.queryWord("Eros")).toMatchSnapshot();
+});
+
 const query = (indexInput: any[], query: string) => {
   const tree = new SuffixTree();
   indexInput.forEach(e =>

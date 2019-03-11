@@ -79,6 +79,12 @@ Array [
 ]
 `;
 
+exports[`erosjonsmotstand 1`] = `
+Object {
+  "ER": 1,
+}
+`;
+
 exports[`i myra eller skogen 1`] = `
 Array [
   Object {
