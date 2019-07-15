@@ -1,6 +1,6 @@
 {
   "name": "indexed-substring-search",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "keywords": [
     "search",
@@ -11,14 +11,14 @@
   "typings": "dist/index.d.ts",
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^23.3.12",
-    "@types/node": "^10.12.18",
-    "jest": "^23.6.0",
-    "prettier": "^1.15.3",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.17.0",
-    "typescript": "^3.2.4"
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.2",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "build": "tsc",
