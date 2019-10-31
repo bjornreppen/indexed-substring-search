@@ -3,10 +3,8 @@
 exports[`Tokenize erosjonsmotstand 1`] = `
 Array [
   "Erosjonsmotstand",
-  "",
   "i",
   "sorterte",
   "sedimenter",
-  "",
 ]
 `;
