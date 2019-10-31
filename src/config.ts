@@ -6,6 +6,6 @@ export const config = {
     if (phrase.indexOf(" ") < 0) {
       return [phrase];
     }
-    return phrase.split(/[.,\/\:\(\) -]/);
+    return phrase.split(/[.,\/\:\(\) -]/).filter(e => e.length > 0);
   }
 };
