@@ -2,19 +2,19 @@
 
 exports[`Banana 1`] = `
 SuffixTree {
-  "index": Object {
-    "a": Object {
-      "$": Object {
+  "index": {
+    "a": {
+      "$": {
         "BANANA": 1,
       },
-      "n": Object {
-        "a": Object {
-          "$": Object {
+      "n": {
+        "a": {
+          "$": {
             "BANANA": 1,
           },
-          "n": Object {
-            "a": Object {
-              "$": Object {
+          "n": {
+            "a": {
+              "$": {
                 "BANANA": 1,
               },
             },
@@ -22,13 +22,13 @@ SuffixTree {
         },
       },
     },
-    "b": Object {
-      "a": Object {
-        "n": Object {
-          "a": Object {
-            "n": Object {
-              "a": Object {
-                "$": Object {
+    "b": {
+      "a": {
+        "n": {
+          "a": {
+            "n": {
+              "a": {
+                "$": {
                   "BANANA": 1,
                 },
               },
@@ -37,14 +37,14 @@ SuffixTree {
         },
       },
     },
-    "n": Object {
-      "a": Object {
-        "$": Object {
+    "n": {
+      "a": {
+        "$": {
           "BANANA": 1,
         },
-        "n": Object {
-          "a": Object {
-            "$": Object {
+        "n": {
+          "a": {
+            "$": {
               "BANANA": 1,
             },
           },
@@ -56,8 +56,8 @@ SuffixTree {
 `;
 
 exports[`Banana ban search 'nana ban' 1`] = `
-Array [
-  Object {
+[
+  {
     "key": "BANANA",
     "score": 1,
   },
@@ -65,14 +65,14 @@ Array [
 `;
 
 exports[`Banana search nana 1`] = `
-Object {
+{
   "BANANA": 1,
 }
 `;
 
 exports[`Multiple hits sharing phrases 1`] = `
-Array [
-  Object {
+[
+  {
     "key": "wood",
     "score": 1,
   },
@@ -80,18 +80,18 @@ Array [
 `;
 
 exports[`erosjonsmotstand 1`] = `
-Object {
+{
   "ER": 1,
 }
 `;
 
 exports[`i myra eller skogen 1`] = `
-Array [
-  Object {
+[
+  {
     "key": "myr",
     "score": 1,
   },
-  Object {
+  {
     "key": "skog",
     "score": 0.81,
   },
