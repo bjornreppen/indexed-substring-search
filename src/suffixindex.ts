@@ -1,18 +1,27 @@
 import { config } from "./config";
-import { INode } from "./node";
+import { Index, INode, IResult, IResultEntry, ReverseMap } from "./node";
 
 export class SuffixIndex {
-  private index: INode;
+  private index: Index;
+  private reverseMap: ReverseMap;
 
-  constructor(index: INode) {
+  constructor(index: Index) {
     this.index = index;
+    this.reverseMap = Object.keys(this.index.map).reduce<ReverseMap>(
+      (acc, e) => {
+        const value = this.index.map[e];
+        acc[value] = e;
+        return acc;
+      },
+      {}
+    );
   }
 
   /** Look up one or more substrings, return the set matching both */
   public queryPhrase(q: string) {
     const words = config.tokenize(q);
     const wordMatches: any = [];
-    words.forEach(word => {
+    words.forEach((word) => {
       wordMatches.push(this.queryWord(word));
     });
     // For our intersect, sort the shortest result set first
@@ -36,28 +45,29 @@ export class SuffixIndex {
   /** Look up a single word in the index */
   public queryWord(q: string) {
     q = q.toLowerCase();
-    let current = this.index;
+    let current = this.index.root;
     for (const char of q) {
       if (!current[char]) {
         return {};
       }
       current = current[char];
     }
-    const results = this.reduce(current, {});
-    return results;
-    //      return results.sort((a: any, b: any) => {
-    //      return (Object as any).values(b)[0] - (Object as any).values(a)[0];
-    //  });
+    return this.reduce(current, {});
   }
 
-  private reduce(r: INode, s: any, parentKey: string = "") {
-    Object.keys(r).forEach(key => {
-      if (parentKey === "$") {
-        s[key] = Math.max(s[key] || 0, r[key]);
-      } else {
-        this.reduce(r[key], s, key);
-      }
+  private reduce(node: INode | IResult, hits: any, parentKey: string = "") {
+    if (parentKey === "$") this.reduceHits(node as IResultEntry[], hits);
+    else {
+      Object.keys(node).forEach((key) => {
+        this.reduce(node[key], hits, key);
+      });
+    }
+    return hits;
+  }
+
+  private reduceHits(node: IResultEntry[], hits: any) {
+    node.forEach(([score, key]) => {
+      hits[this.reverseMap[key]] = Math.max(hits[key] || 0, score);
     });
-    return s;
   }
 }

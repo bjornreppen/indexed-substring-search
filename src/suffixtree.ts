@@ -1,16 +1,22 @@
-import * as fs from "fs";
 import { config } from "./config";
-import { INode, IResult } from "./node";
+import { Index } from "./node";
 import { SuffixIndex } from "./suffixindex";
+
+type IResult = {
+  key: string;
+  score: number;
+};
 
 /** A tiny substring search module
  * https://en.wikipedia.org/wiki/Suffix_tree
  * Can be optimized massively especially for space, but trading size for developer hours.
  */
-export class SuffixTree {
-  private index: INode;
 
-  constructor(json = {}) {
+export class SuffixTree {
+  private index: Index;
+  private keywatermark = 1;
+
+  constructor(json: Index = { root: {}, map: {} }) {
     this.index = json;
   }
 
@@ -47,7 +53,7 @@ export class SuffixTree {
 
   /** index ending of a string */
   private addSuffix(sub: string, searchResult: IResult) {
-    let current = this.index;
+    let current = this.index.root;
     for (const char of sub) {
       if (!current[char]) {
         current[char] = {};
@@ -55,8 +61,14 @@ export class SuffixTree {
       current = current[char];
     }
     if (!current.$) {
-      current.$ = {};
+      current.$ = [];
     }
-    current.$[searchResult.key] = searchResult.score;
+    let index = this.index.map[searchResult.key];
+    if (!index) {
+      this.index.map[searchResult.key] = this.keywatermark;
+      index = this.keywatermark;
+      this.keywatermark++;
+    }
+    current.$.push([searchResult.score, index]);
   }
 }
