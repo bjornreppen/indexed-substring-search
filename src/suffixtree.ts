@@ -55,20 +55,16 @@ export class SuffixTree {
   private addSuffix(sub: string, searchResult: IResult) {
     let current = this.index.root;
     for (const char of sub) {
-      if (!current[char]) {
-        current[char] = {};
-      }
+      if (!current[char]) current[char] = {};
       current = current[char];
     }
-    if (!current.$) {
-      current.$ = [];
-    }
+    if (!current.$) current.$ = [];
     let index = this.index.map[searchResult.key];
     if (!index) {
       this.index.map[searchResult.key] = this.keywatermark;
       index = this.keywatermark;
       this.keywatermark++;
     }
-    current.$.push([searchResult.score, index]);
+    current.$.push(index);
   }
 }
