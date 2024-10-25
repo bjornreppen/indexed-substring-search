@@ -1,5 +1,5 @@
 import { config } from "./config";
-import { Index } from "./node";
+import { Index, INode } from "./node";
 import { SuffixIndex } from "./suffixindex";
 
 type IResult = {
@@ -28,6 +28,22 @@ export class SuffixTree {
   /** Builds the qeryable index. */
   public buildIndex() {
     return new SuffixIndex(this.index);
+  }
+
+  /** Purge and limit number of hits for a given suffix. */
+  public purge(maxHits = 10) {
+    this.purgeInner(this.index.root, maxHits);
+  }
+
+  private purgeInner(node: INode, maxHits: number) {
+    Object.keys(node).forEach((key) => {
+      if (key === "$") {
+        const sortedByScore = node[key].sort(
+          (a: number[], b: number[]) => a[0] > b[0]
+        );
+        node[key] = sortedByScore.slice(0, maxHits);
+      } else this.purgeInner(node[key], maxHits);
+    });
   }
 
   /** index a sequence of words */
